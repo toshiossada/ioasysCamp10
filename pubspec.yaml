@@ -11,11 +11,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  flutter_localizations:
+    sdk: flutter
   cupertino_icons: ^1.0.2
   flutter_modular: ^4.3.1
   dio: ^4.0.4
-  localization: ^1.1.1
+  localization: ^2.1.0
   intl: ^0.17.0
 
 dev_dependencies:
@@ -32,3 +33,4 @@ flutter:
   assets:
     - assets/images/
     - assets/lang/
+    - assets/lang2/

@@ -27,8 +27,7 @@ main() {
     ], replaceBinds: [
       Bind.instance<IHttpClientAdapter>(_httpMock),
     ]);
-    Localization.setTranslationDirectories(['assets/lang']);
-    await Localization.configuration(selectedLanguage: 'pt_BR');
+    LocalJsonLocalization.delegate.directories = ['assets/lang'];
     Modular.navigatorDelegate = _navigatorMock;
   });
   group('Teste campos', () {
@@ -41,9 +40,9 @@ main() {
       //arrange
       await tester.pumpWidget(testableWidget(const HomePage()));
 
-
-      when(_httpMock.get(any, queryParameters: anyNamed('queryParameters'))).thenAnswer(
-          (_) async => HttpResponse(statusCode: 200, data: responsePayload));
+      when(_httpMock.get(any, queryParameters: anyNamed('queryParameters')))
+          .thenAnswer((_) async =>
+              HttpResponse(statusCode: 200, data: responsePayload));
 
       //act
       var txtBrl = find.byKey(const Key('txtBrl'));
@@ -66,7 +65,7 @@ main() {
           Dado a tela de login
           Quando o usuario clickar no logo
           Deve redirecionar para tela de 'about'
-    ''', (tester) async {      
+    ''', (tester) async {
       //arrange
       await tester.pumpWidget(testableWidget(const HomePage()));
       when(_navigatorMock.pushNamed(any)).thenAnswer((_) async => {});
